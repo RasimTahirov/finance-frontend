@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('./reset.scss');
+@import url('../public/font/font.scss');
+
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  body {
+    @apply text-base font-PixelSans font-normal bg-body text-white m-0
+  }
+} 
+
+@layer components {
+  .container {
+    @apply w-3/4 mx-auto
+  }
+  .card {
+    @apply bg-card p-2.5 rounded-md
+  }
+}
