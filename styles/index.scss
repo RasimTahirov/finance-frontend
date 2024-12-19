@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('./reset.scss');
-@import url('../public/font/font.scss');
+@import url("./reset.scss");
+@import url("../public/font/font.scss");
+
+#root {
+  height: 100%;
+}
 
 body {
   text-rendering: optimizeSpeed;
@@ -12,15 +16,25 @@ body {
 
 @layer base {
   body {
-    @apply text-base font-PixelSans font-normal bg-body text-white m-0
+    @apply text-base font-PixelSans font-normal bg-body text-white m-0 min-h-screen;
   }
-} 
+
+  input {
+    @apply text-base font-PixelSans !important;
+  }
+}
 
 @layer components {
   .container {
-    @apply w-3/4 mx-auto
+    @apply w-3/4 mx-auto;
   }
   .card {
-    @apply bg-card p-2.5 rounded-md
+    @apply bg-card p-5 rounded-md;
+  }
+}
+
+@layer utilities {
+  .error {
+    @apply text-error;
   }
 }
