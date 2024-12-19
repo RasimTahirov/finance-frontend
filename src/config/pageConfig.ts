@@ -1,6 +1,7 @@
 class PageConfig {
   home: string = '/';
-  register: string = '/register'
+  register: string = '/registration'
+  auth: string = '/authorization'
 }
 
 export const pageConfig = new PageConfig()

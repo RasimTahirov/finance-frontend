@@ -16,7 +16,7 @@ body {
 
 @layer base {
   body {
-    @apply text-base font-PixelSans font-normal bg-body text-white m-0 min-h-screen;
+    @apply text-base font-PixelSans font-normal bg-body  text-white m-0 min-h-screen !important;
   }
 
   input {

@@ -3,6 +3,7 @@ import { pageConfig } from "../../config/pageConfig";
 
 import Main from "../layouts/Main";
 import RegisterPage from "../../pages/register/RegisterPage";
+import AuthorizationPage from "../../pages/authorization/AuthorizationPage";
 
 export const Router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const Router = createBrowserRouter([
         path: pageConfig.register,
         element: <RegisterPage />
       },
+      {
+        path: pageConfig.auth,
+        element: <AuthorizationPage />
+      }
     ]
   },
 ]);

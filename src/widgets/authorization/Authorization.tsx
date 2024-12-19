@@ -1,22 +1,19 @@
-import axios from "axios";
 import { Button, Form, Input } from "antd";
-import { registerUser } from "../../entities/register/register.api";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { pageConfig } from "../../config/pageConfig";
+import { useDispatch } from "react-redux";
+import { authThunk } from "../../entities/auth/thunk";
 import { UserData } from "../../entities/auth/model/type";
+import { AppDispatch } from "../../store/store";
 
-const Register = () => {
-  const [errorMessage, setErrorMessage] = useState("");
+const Authorization = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: UserData) => {
-    try {
-      const response = await registerUser(data);
-      return response;
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        setErrorMessage(error.response.data.message);
-      }
+    const res = await dispatch(authThunk(data));
+    if (authThunk.fulfilled.match(res)) {
+      localStorage.setItem('email', JSON.stringify(res.payload.email))
+      localStorage.setItem('name', JSON.stringify(res.payload.name))
     }
   };
 
@@ -24,15 +21,9 @@ const Register = () => {
     <div className="container grid h-screen">
       <div className="card mx-auto self-center w-1/4">
         <div className="flex justify-center mb-5">
-          <h3 className="text-3xl font-semibold">Регистрация</h3>
+          <h3 className="text-3xl font-semibold">Авторизация</h3>
         </div>
         <Form className="grid" onFinish={onSubmit}>
-          <Form.Item
-            name="name"
-            rules={[{ required: true, message: "Пожалуйста, введите имя" }]}
-          >
-            <Input placeholder="Имя" />
-          </Form.Item>
           <Form.Item
             name="email"
             rules={[
@@ -53,7 +44,7 @@ const Register = () => {
             rules={[
               {
                 required: true,
-                message: "Пароль должен содержать не менее 5 символов",
+                message: "Пожалуйста, введите пароль",
               },
             ]}
           >
@@ -61,22 +52,17 @@ const Register = () => {
           </Form.Item>
           <div className="flex justify-center mt-2.5">
             <Button className="text-base" htmlType="submit">
-            Зарегистрироваться
+              Войти
             </Button>
           </div>
           <div className="flex justify-center mt-2.5 gap-2.5 text-white">
-            <span>Есть аккаунт?</span>
-            <Link to={pageConfig.auth}>Войти</Link>
+            <span>Не зарегистрированы?</span>
+            <Link to={pageConfig.register}>Зарегистрироваться</Link>
           </div>
-          {errorMessage && (
-            <div className="flex justify-center mt-2.5">
-              <span className="error">{errorMessage}</span>
-            </div>
-          )}
         </Form>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Authorization;
