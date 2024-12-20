@@ -1,18 +1,23 @@
 import axios from "axios";
-import { Button, Form, Input } from "antd";
-import { registerUser } from "../../entities/register/register.api";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { registerUser } from "../../entities/user/register/register.api";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Form, Input, message } from "antd";
 import { pageConfig } from "../../config/pageConfig";
-import { UserData } from "../../entities/auth/model/type";
+import { UserData } from "../../entities/user/model/type";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate()
 
   const onSubmit = async (data: UserData) => {
     try {
-      const response = await registerUser(data);
-      return response;
+      const res = await registerUser(data);
+      if (res) {
+        message.success('Вы успешно зарегистрировались')
+      }
+      navigate(pageConfig.auth)
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.data?.message) {
         setErrorMessage(error.response.data.message);
@@ -21,7 +26,12 @@ const Register = () => {
   };
 
   return (
-    <div className="container grid h-screen">
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}
+      className="container grid h-screen"
+    >
       <div className="card mx-auto self-center w-1/4">
         <div className="flex justify-center mb-5">
           <h3 className="text-3xl font-semibold">Регистрация</h3>
@@ -61,7 +71,7 @@ const Register = () => {
           </Form.Item>
           <div className="flex justify-center mt-2.5">
             <Button className="text-base" htmlType="submit">
-            Зарегистрироваться
+              Зарегистрироваться
             </Button>
           </div>
           <div className="flex justify-center mt-2.5 gap-2.5 text-white">
@@ -75,7 +85,7 @@ const Register = () => {
           )}
         </Form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

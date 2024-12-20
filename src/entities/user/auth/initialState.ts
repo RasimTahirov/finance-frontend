@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { UserState } from "./model/type";
+import { UserState } from "../model/type";
 
 export const initialState: UserState = {
   user: null,

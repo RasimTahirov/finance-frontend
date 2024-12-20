@@ -2,9 +2,11 @@ import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { pageConfig } from "../../config/pageConfig";
 import { useDispatch } from "react-redux";
-import { authThunk } from "../../entities/auth/thunk";
-import { UserData } from "../../entities/auth/model/type";
+import { authThunk } from "../../entities/user/auth/thunk";
+import { UserData } from "../../entities/user/model/type";
 import { AppDispatch } from "../../store/store";
+import { motion } from "framer-motion";
+import { logout } from "../../entities/user/auth/slice";
 
 const Authorization = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -12,13 +14,22 @@ const Authorization = () => {
   const onSubmit = async (data: UserData) => {
     const res = await dispatch(authThunk(data));
     if (authThunk.fulfilled.match(res)) {
-      localStorage.setItem('email', JSON.stringify(res.payload.email))
-      localStorage.setItem('name', JSON.stringify(res.payload.name))
+      localStorage.setItem("email", JSON.stringify(res.payload.email));
+      localStorage.setItem("name", JSON.stringify(res.payload.name));
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
-    <div className="container grid h-screen">
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}
+      className="container grid h-screen"
+    >
       <div className="card mx-auto self-center w-1/4">
         <div className="flex justify-center mb-5">
           <h3 className="text-3xl font-semibold">Авторизация</h3>
@@ -61,7 +72,9 @@ const Authorization = () => {
           </div>
         </Form>
       </div>
-    </div>
+      {/* Временно */}
+      <Button onClick={handleLogout}>Выйти</Button>
+    </motion.div>
   );
 };
 
