@@ -18,7 +18,10 @@ export default {
       backgroundColor: {
         body: '#141332',
         card: '#1d1d41'
-      }
+      },
+      colors: {
+        error:  '#ff4d4f'
+      },
     },
   },
   plugins: [],
