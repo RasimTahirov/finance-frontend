@@ -16,11 +16,12 @@ body {
 
 @layer base {
   body {
-    @apply text-base font-PixelSans font-normal bg-body  text-white m-0 min-h-screen !important;
+    @apply text-xl font-exo2 font-normal bg-body  text-white m-0 min-h-screen !important;
   }
 
-  input {
-    @apply text-base font-PixelSans !important;
+  input,
+  button {
+    @apply text-base font-exo2 !important;
   }
 }
 
@@ -37,4 +38,23 @@ body {
   .error {
     @apply text-error;
   }
+  .menu {
+    @apply flex items-center gap-1 px-2.5 py-1 rounded-md cursor-pointer transition-colors duration-300 ease-in-out;
+  }
+  .menu:hover {
+    @apply bg-menu;
+  }
+  .active {
+    @apply bg-menu !important;
+  }
+  .switch {
+    @apply bg-menu !important;
+  }
+  .switch:hover {
+    @apply bg-opacity-30 !important;
+  }
+  .ant-statistic-title {
+    @apply text-white font-exo2 font-semibold text-2xl !important;
+  }
 }
+
