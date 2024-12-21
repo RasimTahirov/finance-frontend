@@ -7,20 +7,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        PixelSans: ['IMB Pixel Sans', 'sans-serif']
-      },
-      fontWeight: {
-        extraLight: 200,
-        regular: 400,
-        medium: 500,
-        semiBold: 600,
+        exo2: ['exo2', 'sans-serif']
       },
       backgroundColor: {
         body: '#141332',
-        card: '#1d1d41'
+        card: '#1d1d41',
+        menu: '#6359e9',
+        up: '#6359e9',
+        down: '#64cff6'
       },
       colors: {
-        error:  '#ff4d4f'
+        error:  '#ff4d4f',
+        menu: '#fff'
       },
     },
   },
