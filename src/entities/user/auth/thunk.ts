@@ -4,6 +4,8 @@ import axios from "axios";
 export const authThunk = createAsyncThunk("authThunk", async (userData: {email: string; password: string}) => {
   try {
     const res = await axios.post("http://localhost:3000/auth/login", userData);
+    console.log(res.data);
+    
     return res.data;
   } catch (error) {
     console.log("Ошибка при авторизации", error);
