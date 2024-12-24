@@ -10,23 +10,32 @@ import style from "../index.module.scss";
 const CategoryList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenId, setIsModalOpenId] = useState<number | null>(null);
   const { category } = useSelector((state: RootState) => state.category);
 
   useEffect(() => {
     dispatch(categoryAll());
   }, [dispatch]);
 
-  const handleDeleteCategory = (id: number) => {
-    dispatch(deleteCategory(id)).then(() => dispatch(categoryAll()));
-    setIsModalOpen(false);
+  const handleDeleteCategory = () => {
+    if (isModalOpenId !== null) {
+      dispatch(deleteCategory(isModalOpenId)).then(() =>
+        dispatch(categoryAll())
+      );
+      setIsModalOpen(false);
+      setIsModalOpenId(null);
+    }
   };
 
-  const showModalCategory = () => {
+  const showModalCategory = (id: number) => {
     setIsModalOpen(true);
+    setIsModalOpenId(id);
+    console.log(id);
   };
 
   const handleCancelCategory = () => {
     setIsModalOpen(false);
+    setIsModalOpenId(null);
   };
 
   return (
@@ -35,7 +44,10 @@ const CategoryList = () => {
       <ul className="flex gap-2 w-4/5 flex-wrap">
         {category?.map((categories) => (
           <li key={categories.id}>
-            <div className={style.category} onClick={showModalCategory}>
+            <div
+              className={style.category}
+              onClick={() => showModalCategory(categories.id)}
+            >
               <span className={style.title}>{categories.title}</span>
               <div className={style.delete}>
                 <XCircleIcon className="w-5" />
@@ -48,10 +60,7 @@ const CategoryList = () => {
                 <Button key="cancel" onClick={handleCancelCategory}>
                   Отмена
                 </Button>,
-                <Button
-                  key="delete"
-                  onClick={() => handleDeleteCategory(categories.id)}
-                >
+                <Button key="delete" onClick={handleDeleteCategory}>
                   Удалить
                 </Button>,
               ]}
