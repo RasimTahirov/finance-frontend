@@ -42,7 +42,7 @@ const CategoryList = () => {
     <div>
       <span>Мои категории:</span>
       <ul className="flex gap-2 w-4/5 flex-wrap">
-        {category?.map((categories) => (
+        {Array.isArray(category) && category?.map((categories) => (
           <li key={categories.id}>
             <div
               className={style.category}

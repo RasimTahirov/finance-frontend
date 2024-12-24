@@ -3,7 +3,7 @@ import { useState } from "react";
 import { logout } from "../../../entities/user/auth/slice";
 import { pageConfig } from "../../../config/pageConfig";
 import { useNavigate } from "react-router-dom";
-import { categoryThunk } from "../../../entities/category/thunk";
+import { categoryAll, categoryThunk } from "../../../entities/category/thunk";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 
@@ -31,7 +31,7 @@ const CategoryActions = () => {
   };
 
   const onSubmit = (data: { title: string }) => {
-    dispatch(categoryThunk(data));
+    dispatch(categoryThunk(data)).then(() => dispatch(categoryAll()))
     setIsModalOpen(false);
     message.success("Категория создана");
   };
