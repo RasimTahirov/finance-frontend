@@ -1,7 +1,7 @@
-import Register from "../../widgets/register/Register";
+import Register from '../../widgets/register/Register'
 
 const RegisterPage = () => {
-  return <Register />;
-};
+	return <Register />
+}
 
-export default RegisterPage;
+export default RegisterPage

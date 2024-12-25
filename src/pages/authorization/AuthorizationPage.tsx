@@ -1,7 +1,7 @@
-import Authorization from "../../widgets/authorization/Authorization";
+import Authorization from '../../widgets/authorization/Authorization'
 
 const AuthorizationPage = () => {
-  return <Authorization />;
-};
+	return <Authorization />
+}
 
-export default AuthorizationPage;
+export default AuthorizationPage

@@ -1,5 +1,5 @@
 const History = () => {
-  return <div>История</div>;
-};
+	return <div className="card">История</div>
+}
 
 export default History
