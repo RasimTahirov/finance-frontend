@@ -32,3 +32,18 @@ export const financeAllThunk = createAsyncThunk('financeAllThunk', async () => {
 		console.log('Ошибка 123', error);
 	}
 })
+
+export const financeDelete = createAsyncThunk('financeDelete', async (id: number) => {
+	try {
+		const res = await axios.delete(`http://localhost:3000/finance/${id}`, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		return res.data
+	} catch (error) {
+		console.log('Ошибка удаления', error);
+		
+	}
+
+})
