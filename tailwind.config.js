@@ -10,8 +10,6 @@ export default {
 				body: '#141332',
 				card: '#1d1d41',
 				menu: '#6359e9',
-				up: '#6359e9',
-				down: '#64cff6',
 			},
 			colors: {
 				error: '#ff4d4f',
