@@ -7,7 +7,7 @@ export const store = configureStore({
 	reducer: {
 		auth: authReducer,
 		category: categoryReducer,
-		finance: financeReducer
+		finance: financeReducer,
 	},
 })
 

@@ -1,16 +1,16 @@
-import { Button, Form, Input, InputNumber, message, notification, Select } from 'antd'
+import { Button, Form, Input, InputNumber, Select } from 'antd'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { categoryAll } from '../../../entities/category/thunk'
-import { financeData } from '../../../entities/finance/initialState'
+import { categoryAll } from '../../entities/category/thunk'
+import { financeData } from '../../entities/finance/initialState'
 import {
 	financeAllThunk,
 	financeCreateThunk,
-} from '../../../entities/finance/thunk'
-import { AppDispatch, RootState } from '../../../store/store'
+} from '../../entities/finance/thunk'
+import { AppDispatch, RootState } from '../../store/store'
 
-const FinanceCreate = ({ setIsModalOpen }) => {
+const FinanceCreate = () => {
 	const { Option } = Select
 	const dispatch = useDispatch<AppDispatch>()
 	const { category } = useSelector((state: RootState) => state.category)
@@ -19,13 +19,8 @@ const FinanceCreate = ({ setIsModalOpen }) => {
 		dispatch(categoryAll())
 	}, [dispatch])
 
-
-
 	const onSubmit = (data: financeData) => {
-		console.log('запрос', data)
-		dispatch(financeCreateThunk(data)).then(() =>
-			dispatch(financeAllThunk())
-		)
+		dispatch(financeCreateThunk(data)).then(() => dispatch(financeAllThunk()))
 	}
 
 	return (
@@ -39,7 +34,7 @@ const FinanceCreate = ({ setIsModalOpen }) => {
 				<div className="flex gap-2.5 justify-between">
 					<Form.Item name="type" className="w-24">
 						<Select placeholder="тип???">
-							<Select.Option value="Доход">Доход</Select.Option>
+							<Select.Option value="Поступление">Поступление</Select.Option>
 							{/* Изменить value */}
 							<Select.Option value="Расход">Расход</Select.Option>
 						</Select>

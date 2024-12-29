@@ -3,30 +3,28 @@ import { AppDispatch, RootState } from '../../../store/store'
 import { useEffect, useState } from 'react'
 import { financeAllThunk, financeDelete } from '../../../entities/finance/thunk'
 import { formatDate } from '../../../utils/formattedDate'
+import { Button } from 'antd'
 import PaginationHistory from './PaginationHistory'
 import Popup from '../../../shared/ui/Modal/Modal'
-import { Button } from 'antd'
 
 const TabelHistory = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isModalOpenId, setIsModalOpenId] = useState<number | null>(null)
-
-	const showModal = (id: number) => {
-		setIsModalOpen(true)
-		setIsModalOpenId(id)
-		console.log(id)
-	}
-
-	const closeModal = () => {
-		setIsModalOpen(false)
-	}
-
 	const dispatch = useDispatch<AppDispatch>()
 	const { finance } = useSelector((state: RootState) => state.finance)
 
 	useEffect(() => {
 		dispatch(financeAllThunk())
 	}, [dispatch])
+
+	const showModal = (id: number) => {
+		setIsModalOpen(true)
+		setIsModalOpenId(id)
+	}
+
+	const closeModal = () => {
+		setIsModalOpen(false)
+	}
 
 	const onDelete = () => {
 		if (isModalOpenId !== null) {
@@ -55,26 +53,29 @@ const TabelHistory = () => {
 					<tbody className="cursor-pointer">
 						{Array.isArray(finance) &&
 							finance.map((fin) => (
-								// Пока так
 								<>
-									<tr
-										key={fin.id}
-										// Временно
-										className="hover:active"
-										onClick={() => showModal(fin.id)}
-									>
+									<tr key={fin.id} onClick={() => showModal(fin.id)}>
 										<th>{fin.category.title}</th>
 										<th>{fin.title}</th>
 										<th>{formatDate(fin.createdAt)}</th>
 										<th>{fin.amount}₽</th>
-										<th className="income">{fin.type}</th>
+										<th>{fin.type}</th>
 									</tr>
 
 									{isModalOpenId === fin.id && (
 										<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
-											<span>{fin.id}</span>
-											<span>{fin.title}</span>
-											<Button onClick={onDelete}>Удалить</Button>
+											<div className="grid text-lg px-5 w-80">
+												<span>Транзакция от {formatDate(fin.createdAt)}</span>
+												<div className="flex justify-between">
+													<span>{fin.category.title}</span>
+													<span>{fin.title}</span>
+												</div>
+												<div className="flex justify-between">
+													<span></span>
+													<span className="font-semibold">{fin.amount}₽</span>
+												</div>
+												<Button onClick={onDelete}>Удалить транзакцию</Button>
+											</div>
 										</Popup>
 									)}
 								</>

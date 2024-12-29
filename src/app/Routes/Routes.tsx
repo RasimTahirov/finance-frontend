@@ -7,8 +7,8 @@ import HomePage from '../../pages/home/HomePage'
 import HistoryPage from '../../pages/history/HistoryPage'
 import ProfilePage from '../../pages/profile/ProfilePage'
 import Layout from '../../widgets/layout/Layout'
-import Income from '../../widgets/finance/Income'
-import Expenses from '../../widgets/finance/Expenses'
+import Income from '../../widgets/financeCreate/Income'
+import Expenses from '../../widgets/financeCreate/Expenses'
 
 export const Router = createBrowserRouter([
 	{

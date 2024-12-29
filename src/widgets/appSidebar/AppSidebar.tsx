@@ -10,8 +10,8 @@ import {
 } from '@heroicons/react/16/solid'
 import { Button, Switch } from 'antd'
 import { useState } from 'react'
-import Finance from '../finance/Finance'
 import Popup from '../../shared/ui/Modal/Modal'
+import FinanceCreate from '../financeCreate/FinanceCreate'
 
 const AppSidebar = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -66,7 +66,7 @@ const AppSidebar = () => {
 					<span className="text-xl grid">Платеж</span>
 				</Button>
 				<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
-					<Finance setIsModalOpen={setIsModalOpen}/>
+					<FinanceCreate />
 				</Popup>
 			</div>
 		</div>
