@@ -62,4 +62,8 @@ body {
 	.switch:hover {
 		@apply bg-opacity-30 !important;
 	}
+
+	.custom-modal {
+		@apply flex items-center justify-center;
+	}
 }

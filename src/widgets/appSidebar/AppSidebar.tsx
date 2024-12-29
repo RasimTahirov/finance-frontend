@@ -3,13 +3,27 @@ import { NavLink } from 'react-router-dom'
 import { pageConfig } from '../../config/pageConfig'
 import {
 	MoonIcon,
+	PlusIcon,
 	QueueListIcon,
 	Squares2X2Icon,
 	UserIcon,
 } from '@heroicons/react/16/solid'
-import { Switch } from 'antd'
+import { Button, Switch } from 'antd'
+import { useState } from 'react'
+import Popup from '../../shared/ui/Modal/Modal'
+import FinanceCreate from '../financeCreate/FinanceCreate'
 
 const AppSidebar = () => {
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const showModal = () => {
+		setIsModalOpen(true)
+	}
+
+	const closeModal = () => {
+		setIsModalOpen(false)
+	}
+
 	return (
 		<div className="card">
 			<div className="flex items-center gap-2.5 mb-10">
@@ -37,10 +51,23 @@ const AppSidebar = () => {
 				</li>
 			</ul>
 			<div className="border opacity-50" />
-			<div className="px-2.5 flex justify-between mt-5">
-				<MoonIcon className="w-5" />
-				{/* <SunIcon className="w-5" /> */}
-				<Switch className="switch" />
+			<div className="grid gap-2 px-2.5 mt-5">
+				<div className="flex justify-between ">
+					<MoonIcon className="w-5" />
+					{/* <SunIcon className="w-5" /> */}
+					<Switch className="switch" />
+				</div>
+				<Button
+					className="w-full flex justify-start p-0 gap-1 text-white"
+					type="link"
+					onClick={showModal}
+				>
+					<PlusIcon className="w-5" />
+					<span className="text-xl grid">Платеж</span>
+				</Button>
+				<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
+					<FinanceCreate />
+				</Popup>
 			</div>
 		</div>
 	)
