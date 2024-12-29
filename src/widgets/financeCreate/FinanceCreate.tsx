@@ -11,8 +11,8 @@ import {
 import { AppDispatch, RootState } from '../../store/store'
 
 const FinanceCreate = () => {
-	const { Option } = Select
 	const dispatch = useDispatch<AppDispatch>()
+	const { Option } = Select
 	const { category } = useSelector((state: RootState) => state.category)
 
 	useEffect(() => {
@@ -24,23 +24,21 @@ const FinanceCreate = () => {
 	}
 
 	return (
-		<div className="grid">
+		<div className="grid p-5">
 			<h3 className="text-2xl font-semibold mb-2.5">Создание транзакции</h3>
 			<Form onFinish={onSubmit}>
 				<Form.Item name="title">
 					<Input placeholder="Название транзакции" />
 				</Form.Item>
-
 				<div className="flex gap-2.5 justify-between">
-					<Form.Item name="type" className="w-24">
-						<Select placeholder="тип???">
+					<Form.Item name="type" className="w-36">
+						<Select placeholder="Тип операции">
 							<Select.Option value="Поступление">Поступление</Select.Option>
-							{/* Изменить value */}
 							<Select.Option value="Расход">Расход</Select.Option>
 						</Select>
 					</Form.Item>
 
-					<Form.Item name="category" className="w-40">
+					<Form.Item name="category" className="w-48">
 						<Select placeholder="Выберите категорию">
 							{Array.isArray(category) &&
 								category.map((cat) => (
@@ -51,11 +49,10 @@ const FinanceCreate = () => {
 						</Select>
 					</Form.Item>
 
-					<Form.Item name="amount" className="w-40">
-						<InputNumber addonAfter="₽" />
+					<Form.Item name="amount" className="w-24">
+						<InputNumber addonAfter="₽" className="input-number" />
 					</Form.Item>
 				</div>
-
 				<div className="flex justify-center">
 					<Button htmlType="submit">Создать транзакцию</Button>
 				</div>

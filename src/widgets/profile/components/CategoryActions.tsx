@@ -1,4 +1,5 @@
-import { Button, Form, Input, message, Modal } from 'antd'
+import Popup from '../../../shared/ui/Modal/Modal'
+import { Button, Form, Input, message } from 'antd'
 import { useState } from 'react'
 import { logout } from '../../../entities/user/auth/slice'
 import { pageConfig } from '../../../config/pageConfig'
@@ -8,20 +9,16 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../../store/store'
 
 const CategoryActions = () => {
-	const dispatch = useDispatch<AppDispatch>()
-	const navigate = useNavigate()
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [form] = Form.useForm()
+	const dispatch = useDispatch<AppDispatch>()
+	const navigate = useNavigate()
 
 	const showModal = () => {
 		setIsModalOpen(true)
 	}
 
-	const handleOk = () => {
-		form.submit()
-	}
-
-	const handleCancel = () => {
+	const closeModal = () => {
 		setIsModalOpen(false)
 	}
 
@@ -38,22 +35,13 @@ const CategoryActions = () => {
 
 	return (
 		<div className="grid items-center">
-			<Button className="buttonArrow" onClick={handleLogout}>
-				Выйти
-			</Button>
+			<Button onClick={handleLogout}>Выйти</Button>
 			<Button onClick={showModal}>Добавить категорию</Button>
-			<Modal
-				open={isModalOpen}
-				onOk={handleOk}
-				onCancel={handleCancel}
-				cancelText="Отмена"
-				okText="Добавить"
-			>
-				<Form form={form} onFinish={onSubmit}>
-					<label className="font-exo2 text-base">
-						Введите название категории
-					</label>
+			<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
+				<Form form={form} onFinish={onSubmit} className="p-5">
+					<label className="text-lg">Введите название категории</label>
 					<Form.Item
+						className="w-80"
 						name="title"
 						rules={[
 							{
@@ -62,10 +50,13 @@ const CategoryActions = () => {
 							},
 						]}
 					>
-						<Input className="text-base" maxLength={20} showCount />
+						<Input maxLength={25} showCount />
 					</Form.Item>
+					<div className="flex justify-center">
+						<Button htmlType="submit">Добавить категорию</Button>
+					</div>
 				</Form>
-			</Modal>
+			</Popup>
 		</div>
 	)
 }

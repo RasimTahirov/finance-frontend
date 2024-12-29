@@ -1,3 +1,5 @@
+import Popup from '../../shared/ui/Modal/Modal'
+import FinanceCreate from '../financeCreate/FinanceCreate'
 import logo from '../../../public/assets/logo/logo.svg'
 import { NavLink } from 'react-router-dom'
 import { pageConfig } from '../../config/pageConfig'
@@ -10,8 +12,6 @@ import {
 } from '@heroicons/react/16/solid'
 import { Button, Switch } from 'antd'
 import { useState } from 'react'
-import Popup from '../../shared/ui/Modal/Modal'
-import FinanceCreate from '../financeCreate/FinanceCreate'
 
 const AppSidebar = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -28,7 +28,7 @@ const AppSidebar = () => {
 		<div className="card">
 			<div className="flex items-center gap-2.5 mb-10">
 				<img src={logo} alt="myFinance" className="w-10" />
-				<h1 className="text-xl font-semibold text-menu">MyFinance</h1>
+				<h1 className="font-semibold text-menu">MyFinance</h1>
 			</div>
 			<ul className="grid gap-2 mb-5">
 				<li>
@@ -63,7 +63,7 @@ const AppSidebar = () => {
 					onClick={showModal}
 				>
 					<PlusIcon className="w-5" />
-					<span className="text-xl grid">Платеж</span>
+					<span className="text-xl grid">Добавить платеж</span>
 				</Button>
 				<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
 					<FinanceCreate />

@@ -19,7 +19,8 @@ body {
 		@apply text-xl font-exo2 font-normal bg-body  text-white m-0 min-h-screen !important;
 	}
 
-	input {
+	input,
+	label {
 		@apply font-exo2 !important;
 	}
 
@@ -65,5 +66,9 @@ body {
 
 	.custom-modal {
 		@apply flex items-center justify-center;
+	}
+
+	.input-number .ant-input-number-handler-wrap {
+		@apply hidden !important;
 	}
 }
