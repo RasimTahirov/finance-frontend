@@ -1,6 +1,6 @@
-import { useLocation } from 'react-router-dom'
 import Main from '../../app/layouts/Main'
 import AppSidebar from '../appSidebar/AppSidebar'
+import { useLocation } from 'react-router-dom'
 import { pageConfig } from '../../config/pageConfig'
 
 const Layout = () => {
