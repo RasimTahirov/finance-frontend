@@ -19,7 +19,8 @@ body {
 		@apply text-xl font-exo2 font-normal bg-body  text-white m-0 min-h-screen !important;
 	}
 
-	input {
+	input,
+	label {
 		@apply font-exo2 !important;
 	}
 
@@ -44,15 +45,11 @@ body {
 	}
 
 	.menu {
-		@apply flex items-center gap-1 px-2.5 py-1 rounded-md cursor-pointer transition-colors duration-300 ease-in-out;
+		@apply flex items-center w-full gap-1 p-1 rounded-md cursor-pointer transition-colors duration-300 ease-in-out;
 	}
 
 	.menu:hover {
 		@apply bg-menu;
-	}
-
-	.active {
-		@apply bg-menu !important;
 	}
 
 	.switch {
@@ -63,7 +60,7 @@ body {
 		@apply bg-opacity-30 !important;
 	}
 
-	.custom-modal {
-		@apply flex items-center justify-center;
+	.input-number .ant-input-number-handler-wrap {
+		@apply hidden !important;
 	}
 }

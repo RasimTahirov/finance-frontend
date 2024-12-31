@@ -1,21 +1,31 @@
+import style from '../index.module.scss'
+import Popup from '../../../shared/ui/Modal/Modal'
 import { XCircleIcon } from '@heroicons/react/16/solid'
-import { Button, Modal } from 'antd'
+import { Button } from 'antd'
 import { useEffect, useState } from 'react'
 import { AppDispatch, RootState } from '../../../store/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { categoryAll, deleteCategory } from '../../../entities/category/thunk'
 
-import style from '../index.module.scss'
-
 const CategoryList = () => {
-	const dispatch = useDispatch<AppDispatch>()
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isModalOpenId, setIsModalOpenId] = useState<number | null>(null)
 	const { category } = useSelector((state: RootState) => state.category)
+	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
 		dispatch(categoryAll())
 	}, [dispatch])
+
+	const showModalCategory = (id: number) => {
+		setIsModalOpen(true)
+		setIsModalOpenId(id)
+	}
+
+	const closeModal = () => {
+		setIsModalOpen(false)
+		setIsModalOpenId(null)
+	}
 
 	const handleDeleteCategory = () => {
 		if (isModalOpenId !== null) {
@@ -27,20 +37,10 @@ const CategoryList = () => {
 		}
 	}
 
-	const showModalCategory = (id: number) => {
-		setIsModalOpen(true)
-		setIsModalOpenId(id)
-	}
-
-	const handleCancelCategory = () => {
-		setIsModalOpen(false)
-		setIsModalOpenId(null)
-	}
-
 	return (
 		<div>
-			<span>Мои категории:</span>
-			<ul className="flex gap-2 w-4/5 flex-wrap">
+			<span>Мои категории</span>
+			<ul className="flex flex-wrap gap-2 w-4/5">
 				{Array.isArray(category) &&
 					category?.map((categories) => (
 						<li key={categories.id}>
@@ -53,20 +53,17 @@ const CategoryList = () => {
 									<XCircleIcon className="w-5" />
 								</div>
 							</div>
-							<Modal
-								open={isModalOpen}
-								onCancel={handleCancelCategory}
-								footer={[
-									<Button key="cancel" onClick={handleCancelCategory}>
-										Отмена
-									</Button>,
-									<Button key="delete" onClick={handleDeleteCategory}>
-										Удалить
-									</Button>,
-								]}
-							>
-								<span className="text-lg">Хотите удалить категорию?</span>
-							</Modal>
+							<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
+								<div className="grid">
+									<label className="text-lg mb-2.5">
+										Хотите удалить категорию?
+									</label>
+									<div className="flex justify-between">
+										<Button onClick={closeModal}>Отмена</Button>
+										<Button onClick={handleDeleteCategory}>Удалить</Button>
+									</div>
+								</div>
+							</Popup>
 						</li>
 					))}
 			</ul>
