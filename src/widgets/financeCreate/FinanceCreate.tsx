@@ -24,7 +24,7 @@ const FinanceCreate = () => {
 	}
 
 	return (
-		<div className="grid p-5">
+		<div className="grid">
 			<h3 className="text-2xl font-semibold mb-2.5">Создание транзакции</h3>
 			<Form onFinish={onSubmit}>
 				<Form.Item name="title">
@@ -50,7 +50,7 @@ const FinanceCreate = () => {
 					</Form.Item>
 
 					<Form.Item name="amount" className="w-24">
-						<InputNumber addonAfter="₽" className="input-number" />
+						<InputNumber addonAfter="₽" />
 					</Form.Item>
 				</div>
 				<div className="flex justify-center">

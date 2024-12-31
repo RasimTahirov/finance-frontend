@@ -38,7 +38,7 @@ const CategoryActions = () => {
 			<Button onClick={handleLogout}>Выйти</Button>
 			<Button onClick={showModal}>Добавить категорию</Button>
 			<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
-				<Form form={form} onFinish={onSubmit} className="p-5">
+				<Form form={form} onFinish={onSubmit}>
 					<label className="text-lg">Введите название категории</label>
 					<Form.Item
 						className="w-80"

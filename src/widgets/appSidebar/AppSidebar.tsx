@@ -10,7 +10,7 @@ import {
 	Squares2X2Icon,
 	UserIcon,
 } from '@heroicons/react/16/solid'
-import { Button, Switch } from 'antd'
+import { Switch } from 'antd'
 import { useState } from 'react'
 
 const AppSidebar = () => {
@@ -26,10 +26,18 @@ const AppSidebar = () => {
 
 	return (
 		<div className="card">
-			<div className="flex items-center gap-2.5 mb-10">
-				<img src={logo} alt="myFinance" className="w-10" />
-				<h1 className="font-semibold text-menu">MyFinance</h1>
+			<div className="flex justify-between items-center mb-10">
+				<div className="flex items-center gap-2.5">
+					<img src={logo} alt="myFinance" className="w-10" />
+					<h1 className="font-semibold text-menu">MyFinance</h1>
+				</div>
+				<div className="flex gap-2">
+					<MoonIcon className="w-5" />
+					{/* <SunIcon className="w-5" /> */}
+					<Switch className="switch" />
+				</div>
 			</div>
+
 			<ul className="grid gap-2 mb-5">
 				<li>
 					<NavLink to={pageConfig.home} className="menu">
@@ -51,23 +59,16 @@ const AppSidebar = () => {
 				</li>
 			</ul>
 			<div className="border opacity-50" />
-			<div className="grid gap-2 px-2.5 mt-5">
-				<div className="flex justify-between ">
-					<MoonIcon className="w-5" />
-					{/* <SunIcon className="w-5" /> */}
-					<Switch className="switch" />
+			<div className="grid gap-2 mt-5">
+				<div className="">
+					<button className="menu" onClick={showModal}>
+						<PlusIcon className="w-5" />
+						<span className="text-xl grid">Добавить платеж</span>
+					</button>
+					<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
+						<FinanceCreate />
+					</Popup>
 				</div>
-				<Button
-					className="w-full flex justify-start p-0 gap-1 text-white"
-					type="link"
-					onClick={showModal}
-				>
-					<PlusIcon className="w-5" />
-					<span className="text-xl grid">Добавить платеж</span>
-				</Button>
-				<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
-					<FinanceCreate />
-				</Popup>
 			</div>
 		</div>
 	)

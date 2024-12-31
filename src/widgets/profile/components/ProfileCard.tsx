@@ -18,7 +18,7 @@ const ProfileCard = () => {
 	}, [])
 
 	return (
-		<div className="flex gap-5">
+		<div className="flex gap-2.5">
 			<img className="w-28 rounded-[50%]" src={avatar} alt={name} />
 			<div className="grid">
 				<input disabled value={name} />

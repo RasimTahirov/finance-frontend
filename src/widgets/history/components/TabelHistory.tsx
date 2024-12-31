@@ -54,7 +54,11 @@ const TabelHistory = () => {
 						{Array.isArray(finance) &&
 							finance.map((fin) => (
 								<>
-									<tr key={fin.id} onClick={() => showModal(fin.id)}>
+									<tr
+										key={fin.id}
+										onClick={() => showModal(fin.id)}
+										className="hover:opacity-60 transition-opacity duration-300 ease-in-out"
+									>
 										<th>{fin.category.title}</th>
 										<th>{fin.title}</th>
 										<th>{formatDate(fin.createdAt)}</th>

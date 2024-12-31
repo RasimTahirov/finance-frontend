@@ -54,7 +54,7 @@ const CategoryList = () => {
 								</div>
 							</div>
 							<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
-								<div className="p-5 grid">
+								<div className="grid">
 									<label className="text-lg mb-2.5">
 										Хотите удалить категорию?
 									</label>

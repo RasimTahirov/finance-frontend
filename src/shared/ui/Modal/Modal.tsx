@@ -15,7 +15,6 @@ const Popup: FC<PopupProps> = ({ children, isModalOpen, closeModal }) => {
 			onCancel={closeModal}
 			footer={null}
 			closable={false}
-			className="custom-modal"
 		>
 			<div>
 				<XMarkIcon
@@ -23,7 +22,7 @@ const Popup: FC<PopupProps> = ({ children, isModalOpen, closeModal }) => {
 					className="absolute w-5 right-5 cursor-pointer"
 				/>
 			</div>
-			{children}
+			<div className="p-5">{children}</div>
 		</Modal>
 	)
 }
