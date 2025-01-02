@@ -63,4 +63,8 @@ body {
 	.input-number .ant-input-number-handler-wrap {
 		@apply hidden !important;
 	}
+
+	.ant-statistic-title {
+		@apply text-xl font-exo2 text-white !important;
+	}
 }

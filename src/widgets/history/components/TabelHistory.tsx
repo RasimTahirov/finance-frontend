@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../../store/store'
 import { useEffect, useState } from 'react'
-import { financeAllThunk, financeDelete } from '../../../entities/finance/thunk'
+import {
+	financeAllThunk,
+	financeDelete,
+	financeTotal,
+} from '../../../entities/finance/thunk'
 import { formatDate } from '../../../utils/formattedDate'
 import { Button } from 'antd'
 import PaginationHistory from './PaginationHistory'
@@ -29,7 +33,7 @@ const TabelHistory = () => {
 	const onDelete = () => {
 		if (isModalOpenId !== null) {
 			dispatch(financeDelete(isModalOpenId)).then(() =>
-				dispatch(financeAllThunk()),
+				dispatch(financeAllThunk()).then(() => dispatch(financeTotal())),
 			)
 		}
 		setIsModalOpen(false)

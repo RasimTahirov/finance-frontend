@@ -14,12 +14,10 @@ interface initialStateData {
 	finance: financeData[]
 	error: null | string
 	loading: boolean
-	success: boolean
 }
 
 export const initialState: initialStateData = {
 	finance: [],
 	error: null,
 	loading: false,
-	success: false,
 }
