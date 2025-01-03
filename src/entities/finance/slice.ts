@@ -15,7 +15,6 @@ const financeSlice = createSlice({
 			.addCase(financeCreateThunk.fulfilled, (state, action) => {
 				state.loading = false
 				state.error = null
-				state.success = true
 				state.finance = action.payload
 			})
 			.addCase(financeCreateThunk.rejected, (state, action) => {

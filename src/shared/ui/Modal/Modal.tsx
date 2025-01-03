@@ -15,6 +15,7 @@ const Popup: FC<PopupProps> = ({ children, isModalOpen, closeModal }) => {
 			onCancel={closeModal}
 			footer={null}
 			closable={false}
+			className="flex justify-center"
 		>
 			<div>
 				<XMarkIcon

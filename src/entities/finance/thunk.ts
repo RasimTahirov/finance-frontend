@@ -55,3 +55,16 @@ export const financeDelete = createAsyncThunk(
 		}
 	},
 )
+
+export const financeTotal = createAsyncThunk('financeTotal', async () => {
+	try {
+		const res = await axios.get('http://localhost:3000/finance/total', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		return res.data
+	} catch (error) {
+		console.log('Ошибка получение общей суммы', error)
+	}
+})
