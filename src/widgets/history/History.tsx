@@ -1,5 +1,5 @@
-import HeaderHistory from './components/HeaderHistory'
-import TabelHistory from './components/TabelHistory'
+import HeaderHistory from './ui/HeaderHistory'
+import TabelHistory from './ui/TabelHistory'
 
 const History = () => {
 	return (

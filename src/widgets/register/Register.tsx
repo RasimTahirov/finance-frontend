@@ -1,29 +1,11 @@
-import axios from 'axios'
-import { useState } from 'react'
-import { registerUser } from '../../entities/user/register/register.api'
-import { Link, useNavigate } from 'react-router-dom'
-import { Button, Form, Input, message } from 'antd'
-import { pageConfig } from '../../config/pageConfig'
-import { UserData } from '../../entities/user/model/type'
+import { Link } from 'react-router-dom'
+import { Button, Form, Input } from 'antd'
 import { motion } from 'framer-motion'
+import useRegister from './model/useRegister'
+import { pageConfig } from '@/shared/config/pageConfig'
 
 const Register = () => {
-	const [errorMessage, setErrorMessage] = useState('')
-	const navigate = useNavigate()
-
-	const onSubmit = async (data: UserData) => {
-		try {
-			const res = await registerUser(data)
-			if (res) {
-				message.success('Вы успешно зарегистрировались')
-			}
-			navigate(pageConfig.auth)
-		} catch (error) {
-			if (axios.isAxiosError(error) && error.response?.data?.message) {
-				setErrorMessage(error.response.data.message)
-			}
-		}
-	}
+	const { errorMessage, onSubmit } = useRegister()
 
 	return (
 		<motion.div
@@ -37,10 +19,7 @@ const Register = () => {
 					<h3 className="text-3xl font-semibold">Регистрация</h3>
 				</div>
 				<Form className="grid" onFinish={onSubmit}>
-					<Form.Item
-						name="name"
-						rules={[{ required: true, message: 'Пожалуйста, введите имя' }]}
-					>
+					<Form.Item name="name" rules={[{ required: true, message: 'Пожалуйста, введите имя' }]}>
 						<Input placeholder="Имя" />
 					</Form.Item>
 					<Form.Item

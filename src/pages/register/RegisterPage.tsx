@@ -1,4 +1,4 @@
-import Register from '../../widgets/register/Register'
+import Register from '@/widgets/register/Register'
 
 const RegisterPage = () => {
 	return <Register />

@@ -1,4 +1,4 @@
-import History from '../../widgets/history/History'
+import History from '@/widgets/history/History'
 
 const HistoryPage = () => {
 	return <History />

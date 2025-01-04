@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { financeAllThunk, financeCreateThunk } from './thunk'
+import { financeAllThunk, financeCreateThunk, financeLastWeek } from './thunk'
 import { initialState } from './initialState'
 
 const financeSlice = createSlice({
@@ -32,6 +32,20 @@ const financeSlice = createSlice({
 				state.finance = action.payload
 			})
 			.addCase(financeAllThunk.rejected, (state, action) => {
+				state.loading = false
+				state.error = action.payload as string
+			})
+
+			.addCase(financeLastWeek.pending, (state) => {
+				state.loading = true
+				state.error = null
+			})
+			.addCase(financeLastWeek.fulfilled, (state, action) => {
+				state.loading = false
+				state.error = null
+				state.finance = action.payload
+			})
+			.addCase(financeLastWeek.rejected, (state, action) => {
 				state.loading = false
 				state.error = action.payload as string
 			})

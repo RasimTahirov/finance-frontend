@@ -1,15 +1,12 @@
-import Main from '../../app/layouts/Main'
-import AppSidebar from '../appSidebar/AppSidebar'
-import { useLocation } from 'react-router-dom'
-import { pageConfig } from '../../config/pageConfig'
-import AppPanel from '../appPanel/AppPanel'
+import Main from '@/app/layouts/Main'
+import useAuthLayout from './model/useAuthLayout'
+import AppPanel from './ui/AppPanel'
+import AppSidebar from './ui/AppSidebar'
 
 const Layout = () => {
-	const location = useLocation()
+	const authLayout = useAuthLayout()
 
-	const authAndRegister = [pageConfig.auth, pageConfig.register]
-
-	if (authAndRegister.includes(location.pathname)) {
+	if (authLayout) {
 		return <Main />
 	}
 

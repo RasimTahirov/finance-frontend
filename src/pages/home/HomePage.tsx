@@ -1,4 +1,4 @@
-import Home from '../../widgets/home/Home'
+import Home from '@/widgets/home/Home'
 
 const HomePage = () => {
 	return <Home />

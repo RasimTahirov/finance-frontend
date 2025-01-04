@@ -45,11 +45,11 @@ body {
 	}
 
 	.menu {
-		@apply flex items-center w-full gap-1 p-1 rounded-md cursor-pointer transition-colors duration-300 ease-in-out;
+		@apply flex items-center w-full gap-1 p-1 rounded-md cursor-pointer anim;
 	}
 
 	.menu:hover {
-		@apply bg-menu;
+		@apply bg-menu text-hover;
 	}
 
 	.switch {
@@ -66,5 +66,37 @@ body {
 
 	.ant-statistic-title {
 		@apply text-xl font-exo2 text-white !important;
+	}
+
+	.full-skeleton {
+		@apply absolute top-0 left-0 h-full w-full z-10 !important;
+	}
+
+	.anim {
+		@apply transition-colors duration-300 ease-in-out;
+	}
+
+	.text-hover:hover {
+		@apply text-gray-300;
+	}
+
+	.category {
+		@apply relative bg-menu px-2.5 rounded-md cursor-pointer transition-all duration-200 ease-out;
+	}
+
+	.delete-text {
+		@apply absolute opacity-0 left-[50%] translate-x-[-50%] transition-all duration-200 ease-out;
+	}
+
+	.category:hover {
+		.category-text {
+			@apply opacity-0;
+		}
+
+		.delete-text {
+			@apply opacity-100;
+		}
+
+		@apply bg-black opacity-80;
 	}
 }

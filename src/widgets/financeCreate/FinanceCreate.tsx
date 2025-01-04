@@ -2,14 +2,11 @@ import { Button, Form, Input, InputNumber, Radio, Select } from 'antd'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { categoryAll } from '../../entities/category/thunk'
-import { financeData } from '../../entities/finance/initialState'
-import {
-	financeAllThunk,
-	financeCreateThunk,
-	financeTotal,
-} from '../../entities/finance/thunk'
-import { AppDispatch, RootState } from '../../store/store'
+import { AppDispatch, RootState } from '@/app/store'
+import { categoryAll } from '@/features/category/api/thunks/thunk'
+import { financeData } from '@/entities/finance/initialState'
+import { financeAllThunk, financeCreateThunk, financeLastWeek } from '@/entities/finance/thunk'
+import { balanceThunk } from '@/features/balance/api/thunks/thunk'
 
 const FinanceCreate = () => {
 	const dispatch = useDispatch<AppDispatch>()
@@ -29,7 +26,8 @@ const FinanceCreate = () => {
 
 		dispatch(financeCreateThunk(data))
 			.then(() => dispatch(financeAllThunk()))
-			.then(() => dispatch(financeTotal()))
+			.then(() => dispatch(financeLastWeek()))
+			.then(() => dispatch(balanceThunk()))
 	}
 
 	return (

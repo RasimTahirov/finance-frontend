@@ -1,4 +1,4 @@
-import Profile from '../../widgets/profile/Profile'
+import Profile from '@/widgets/profile/Profile'
 
 const ProfilePage = () => {
 	return <Profile />

@@ -11,15 +11,11 @@ export const financeCreateThunk = createAsyncThunk(
 		try {
 			console.log(token)
 
-			const res = await axios.post(
-				'http://localhost:3000/finance',
-				financeData,
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
+			const res = await axios.post('http://localhost:3000/finance', financeData, {
+				headers: {
+					Authorization: `Bearer ${token}`,
 				},
-			)
+			})
 			return res.data
 		} catch (error) {
 			console.log('Ошибка создание транзакции', error)
@@ -40,31 +36,31 @@ export const financeAllThunk = createAsyncThunk('financeAllThunk', async () => {
 	}
 })
 
-export const financeDelete = createAsyncThunk(
-	'financeDelete',
-	async (id: number) => {
-		try {
-			const res = await axios.delete(`http://localhost:3000/finance/${id}`, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			})
-			return res.data
-		} catch (error) {
-			console.log('Ошибка удаления', error)
-		}
-	},
-)
-
-export const financeTotal = createAsyncThunk('financeTotal', async () => {
+export const financeDelete = createAsyncThunk('financeDelete', async (id: number) => {
 	try {
-		const res = await axios.get('http://localhost:3000/finance/total', {
+		const res = await axios.delete(`http://localhost:3000/finance/${id}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
 		})
 		return res.data
 	} catch (error) {
+		console.log('Ошибка удаления', error)
+	}
+})
+
+export const financeLastWeek = createAsyncThunk('financeLastWeek', async () => {
+	try {
+		const res = await axios.get('http://localhost:3000/finance/last-week', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+
+		return res.data
+	} catch (error) {
 		console.log('Ошибка получение общей суммы', error)
 	}
 })
+
+// Исправить все console.log
