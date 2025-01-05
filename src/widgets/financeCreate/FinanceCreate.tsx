@@ -1,36 +1,13 @@
+import { useSelector } from 'react-redux'
 import { Button, Form, Input, InputNumber, Radio, Select } from 'antd'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { categoryAll } from '../../entities/category/thunk'
-import { financeData } from '../../entities/finance/initialState'
-import {
-	financeAllThunk,
-	financeCreateThunk,
-	financeTotal,
-} from '../../entities/finance/thunk'
-import { AppDispatch, RootState } from '../../store/store'
+import { RootState } from '@/app/store'
+import useFinance from './model/useFinance'
 
 const FinanceCreate = () => {
-	const dispatch = useDispatch<AppDispatch>()
 	const { Option } = Select
 	const { category } = useSelector((state: RootState) => state.category)
-
-	useEffect(() => {
-		dispatch(categoryAll())
-	}, [dispatch])
-
-	const onSubmit = (data: financeData) => {
-		if (data.type === 'Расход') {
-			data.amount = -Math.abs(data.amount)
-		} else {
-			data.amount = Math.abs(data.amount)
-		}
-
-		dispatch(financeCreateThunk(data))
-			.then(() => dispatch(financeAllThunk()))
-			.then(() => dispatch(financeTotal()))
-	}
+	const { onSubmit } = useFinance()
 
 	return (
 		<div className="grid">
@@ -48,7 +25,6 @@ const FinanceCreate = () => {
 							</div>
 						</Radio.Group>
 					</Form.Item>
-
 					<Form.Item name="category" className="w-48">
 						<Select placeholder="Выберите категорию">
 							{Array.isArray(category) &&
@@ -59,7 +35,6 @@ const FinanceCreate = () => {
 								))}
 						</Select>
 					</Form.Item>
-
 					<Form.Item name="amount" className="w-24">
 						<InputNumber addonAfter="₽" />
 					</Form.Item>

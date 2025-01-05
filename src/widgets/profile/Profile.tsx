@@ -1,6 +1,6 @@
-import ProfileCard from './components/ProfileCard'
-import CategoryActions from './components/CategoryActions'
-import CategoryList from './components/CategoryList'
+import ProfileCard from './ui/ProfileCard'
+import CategoryActions from './ui/CategoryActions'
+import CategoryList from './ui/CategoryList'
 
 const Profile = () => {
 	return (

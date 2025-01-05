@@ -1,14 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { pageConfig } from '../../config/pageConfig'
 
-import RegisterPage from '../../pages/register/RegisterPage'
-import AuthorizationPage from '../../pages/authorization/AuthorizationPage'
-import HomePage from '../../pages/home/HomePage'
-import HistoryPage from '../../pages/history/HistoryPage'
-import ProfilePage from '../../pages/profile/ProfilePage'
-import Layout from '../../widgets/layout/Layout'
-import Income from '../../widgets/financeCreate/Income'
-import Expenses from '../../widgets/financeCreate/Expenses'
+import Layout from '@/widgets/layout/Layout'
+import AuthorizationPage from '@/pages/authorization/AuthorizationPage'
+import HistoryPage from '@/pages/history/HistoryPage'
+import HomePage from '@/pages/home/HomePage'
+import ProfilePage from '@/pages/profile/ProfilePage'
+import RegisterPage from '@/pages/register/RegisterPage'
+import { pageConfig } from '../../shared/config/pageConfig'
 
 export const Router = createBrowserRouter([
 	{

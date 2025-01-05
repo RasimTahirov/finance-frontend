@@ -1,11 +1,11 @@
-import FinanceLineChart from './components/FinanceLineChart'
-import HomeHeader from './components/HomeHeader'
+import LastWeekFinance from './ui/LastWeekFinance'
+import HomeHeader from './ui/HomeHeader'
 
 const Home = () => {
 	return (
 		<div>
 			<HomeHeader />
-			<FinanceLineChart />
+			<LastWeekFinance />
 		</div>
 	)
 }

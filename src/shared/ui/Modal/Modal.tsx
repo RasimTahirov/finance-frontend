@@ -18,12 +18,9 @@ const Popup: FC<PopupProps> = ({ children, isModalOpen, closeModal }) => {
 			className="flex justify-center"
 		>
 			<div>
-				<XMarkIcon
-					onClick={closeModal}
-					className="absolute w-5 right-5 cursor-pointer"
-				/>
+				<XMarkIcon onClick={closeModal} className="absolute w-5 right-5 cursor-pointer" />
 			</div>
-			<div className="p-5">{children}</div>
+			<div className="p-5 font-exo2 text-lg">{children}</div>
 		</Modal>
 	)
 }
