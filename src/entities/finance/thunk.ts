@@ -1,7 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { financeData } from './initialState'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+
+import { financeData } from './initialState'
 
 const token = Cookies.get('token')
 

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { pageConfig } from '../../shared/config/pageConfig'
 
 import Layout from '@/widgets/layout/Layout'
 import AuthorizationPage from '@/pages/authorization/AuthorizationPage'
@@ -7,6 +6,7 @@ import HistoryPage from '@/pages/history/HistoryPage'
 import HomePage from '@/pages/home/HomePage'
 import ProfilePage from '@/pages/profile/ProfilePage'
 import RegisterPage from '@/pages/register/RegisterPage'
+import { pageConfig } from '../../shared/config/pageConfig'
 
 export const Router = createBrowserRouter([
 	{

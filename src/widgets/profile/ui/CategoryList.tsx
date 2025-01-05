@@ -1,9 +1,10 @@
-import { AppDispatch, RootState } from '@/app/store'
-import { categoryAll, deleteCategory } from '@/features/category/api/thunks/thunk'
-import Popup from '@/shared/ui/Modal/Modal'
 import { Button, Skeleton } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { AppDispatch, RootState } from '@/app/store'
+import { categoryAll, deleteCategory } from '@/features/category/api/thunks/thunk'
+import Popup from '@/shared/ui/Modal/Modal'
 
 const CategoryList = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)

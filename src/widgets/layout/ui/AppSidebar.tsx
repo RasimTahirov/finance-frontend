@@ -9,6 +9,7 @@ import {
 	UserIcon,
 } from '@heroicons/react/16/solid'
 import { Switch } from 'antd'
+
 import useModal from '@/shared/hooks/useModal'
 import { pageConfig } from '@/shared/config/pageConfig'
 import Popup from '@/shared/ui/Modal/Modal'

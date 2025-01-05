@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { financeAllThunk, financeCreateThunk, financeLastWeek } from './thunk'
 import { initialState } from './initialState'
 

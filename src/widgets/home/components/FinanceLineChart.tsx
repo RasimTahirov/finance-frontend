@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { Skeleton } from 'antd'
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+
 import { AppDispatch, RootState } from '@/app/store'
 import { financeLastWeek } from '@/entities/finance/thunk'
 

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { balanceThunk } from '../thunks/thunk'
 import { initialState as initialStateData } from '../../types/type'
 

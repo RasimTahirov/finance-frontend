@@ -1,6 +1,6 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const token = Cookies.get('token')
 

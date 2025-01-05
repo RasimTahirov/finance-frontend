@@ -1,11 +1,12 @@
 import { Button, Form, Input, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import useModal from '@/shared/hooks/useModal'
+
 import { AppDispatch } from '@/app/store'
 import { logout } from '@/entities/user/auth/slice/slice'
 import { pageConfig } from '@/shared/config/pageConfig'
 import { categoryAll, categoryThunk } from '@/features/category/api/thunks/thunk'
+import useModal from '@/shared/hooks/useModal'
 import Popup from '@/shared/ui/Modal/Modal'
 
 const CategoryActions = () => {

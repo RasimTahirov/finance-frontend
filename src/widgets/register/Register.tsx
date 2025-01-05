@@ -1,58 +1,33 @@
 import { Link } from 'react-router-dom'
 import { Button, Form, Input } from 'antd'
 import { motion } from 'framer-motion'
-import useRegister from './model/useRegister'
+
 import { pageConfig } from '@/shared/config/pageConfig'
+import { animationConfig } from '@/shared/config/animationConfig'
+import useRegister from './model/useRegister'
+import useValidationRules from '@/shared/hooks/useValidationRules'
 
 const Register = () => {
 	const { errorMessage, onSubmit } = useRegister()
+	const { nameRules, emailRules, passwordRegisterRules } = useValidationRules()
 
 	return (
-		<motion.div
-			initial={{ opacity: 0, scale: 0 }}
-			animate={{ opacity: 1, scale: 1 }}
-			transition={{ duration: 0.2 }}
-			className="container grid h-screen"
-		>
+		<motion.div {...animationConfig} className="container grid h-screen">
 			<div className="card mx-auto self-center w-1/4">
-				<div className="flex justify-center mb-5">
-					<h3 className="text-3xl font-semibold">Регистрация</h3>
-				</div>
+				<h3 className="flex justify-center mb-5 text-3xl font-semibold">Регистрация</h3>
 				<Form className="grid" onFinish={onSubmit}>
-					<Form.Item name="name" rules={[{ required: true, message: 'Пожалуйста, введите имя' }]}>
+					<Form.Item name="name" rules={nameRules}>
 						<Input placeholder="Имя" />
 					</Form.Item>
-					<Form.Item
-						name="email"
-						rules={[
-							{
-								type: 'email',
-								message: 'Введён некорректный адрес электронной почты',
-							},
-							{
-								required: true,
-								message: 'Пожалуйста, введите адрес электронной почты',
-							},
-						]}
-					>
+					<Form.Item name="email" rules={emailRules}>
 						<Input placeholder="Почта" />
 					</Form.Item>
-					<Form.Item
-						name="password"
-						rules={[
-							{
-								required: true,
-								message: 'Пароль должен содержать не менее 5 символов',
-							},
-						]}
-					>
+					<Form.Item name="password" rules={passwordRegisterRules}>
 						<Input.Password placeholder="Пароль" />
 					</Form.Item>
-					<div className="flex justify-center mt-2.5">
-						<Button className="text-base" htmlType="submit">
-							Зарегистрироваться
-						</Button>
-					</div>
+					<Button className="text-base mt-2.5" htmlType="submit">
+						Зарегистрироваться
+					</Button>
 					<div className="flex justify-center mt-2.5 gap-2.5 text-white">
 						<span>Есть аккаунт?</span>
 						<Link to={pageConfig.auth}>Войти</Link>

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { categoryAll, categoryThunk } from '../thunks/thunk'
 import { initialStateData } from '../../types/type'
 

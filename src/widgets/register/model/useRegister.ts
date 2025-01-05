@@ -1,7 +1,8 @@
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { message } from 'antd'
-import axios from 'axios'
 import { useState } from 'react'
+
 import { UserData } from '@/entities/user/types/type'
 import { registerUser } from '@/entities/user/register/api/register.api'
 import { pageConfig } from '@/shared/config/pageConfig'

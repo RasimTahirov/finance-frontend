@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
 import { UserData } from '@/entities/user/types/type'
 import { authThunk } from '@/entities/user/auth/thunks/thunk'
 import { pageConfig } from '@/shared/config/pageConfig'

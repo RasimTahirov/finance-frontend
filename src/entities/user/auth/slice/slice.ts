@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { authThunk } from '../thunks/thunk'
 import Cookies from 'js-cookie'
+import { createSlice } from '@reduxjs/toolkit'
+
+import { authThunk } from '../thunks/thunk'
 import { UserState } from '../../types/type'
 
 export const initialState: UserState = {

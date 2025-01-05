@@ -1,4 +1,5 @@
 import Main from '@/app/layouts/Main'
+
 import useAuthLayout from './model/useAuthLayout'
 import AppPanel from './ui/AppPanel'
 import AppSidebar from './ui/AppSidebar'

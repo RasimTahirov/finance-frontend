@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit'
+
 import authReducer from '@/entities/user/auth/slice/slice'
 import financeReducer from '@/entities/finance/slice'
 import balanceReducer from '@/features/balance/api/slice/slice'
