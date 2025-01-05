@@ -54,40 +54,42 @@ const TabelHistory = () => {
 
 					<tbody className="cursor-pointer">
 						{Array.isArray(finance) &&
-							finance.map((fin) => (
-								<>
-									<tr
-										key={fin.id}
-										onClick={() => showModal(fin.id)}
-										className="hover:opacity-60 transition-opacity duration-300 ease-in-out"
-									>
-										<th>{fin.category.title}</th>
-										<th>{fin.title}</th>
-										<th>{formatDate(fin.createdAt)}</th>
-										<th>{fin.amount}₽</th>
-										<th>{fin.type}</th>
-									</tr>
+							finance
+								.filter((fin) => fin.category && fin.category.title)
+								.map((fin) => (
+									<>
+										<tr
+											key={fin.id}
+											onClick={() => showModal(fin.id)}
+											className="hover:opacity-60 transition-opacity duration-300 ease-in-out"
+										>
+											<th>{fin.category.title}</th>
+											<th>{fin.title}</th>
+											<th>{formatDate(fin.createdAt)}</th>
+											<th>{fin.amount}₽</th>
+											<th>{fin.type}</th>
+										</tr>
 
-									{isModalOpenId === fin.id && (
-										<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
-											<div className="grid w-80">
-												<span className="mb-2.5">Транзакция от {formatDate(fin.createdAt)}</span>
-												<div className="flex justify-between">
-													<span>{fin.category.title}</span>
-													<span>{fin.title}</span>
+										{isModalOpenId === fin.id && (
+											<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
+												<div className="grid w-80">
+													<span className="mb-2.5">Транзакция от {formatDate(fin.createdAt)}</span>
+													<div className="flex justify-between">
+														<span>{fin.category.title}</span>
+														<span>{fin.title}</span>
+													</div>
+													<span
+														className="flex justify-end font-semibold"
+														style={{ color: fin.amount < 0 ? '#cf2929' : '#4c9e3f' }}
+													>
+														{fin.amount}₽
+													</span>
+													<Button onClick={onDelete}>Удалить транзакцию</Button>
 												</div>
-												<span
-													className="flex justify-end font-semibold"
-													style={{ color: fin.amount < 0 ? '#cf2929' : '#4c9e3f' }}
-												>
-													{fin.amount}₽
-												</span>
-												<Button onClick={onDelete}>Удалить транзакцию</Button>
-											</div>
-										</Popup>
-									)}
-								</>
-							))}
+											</Popup>
+										)}
+									</>
+								))}
 					</tbody>
 				</table>
 				<PaginationHistory />

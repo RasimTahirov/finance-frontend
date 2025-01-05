@@ -5,7 +5,7 @@ import { AppDispatch } from '@/app/store'
 import { financeData } from '@/entities/finance/initialState'
 import { categoryAll } from '@/features/category/api/thunks/thunk'
 import { balanceThunk } from '@/features/balance/api/thunks/thunk'
-import { financeAllThunk, financeCreateThunk, financeLastWeek } from '@/entities/finance/thunk'
+import { financeAllThunk, financeCreateThunk } from '@/entities/finance/thunk'
 
 const useFinance = () => {
 	const dispatch = useDispatch<AppDispatch>()
@@ -23,7 +23,6 @@ const useFinance = () => {
 
 		dispatch(financeCreateThunk(data))
 			.then(() => dispatch(financeAllThunk()))
-			.then(() => dispatch(financeLastWeek()))
 			.then(() => dispatch(balanceThunk()))
 	}
 
