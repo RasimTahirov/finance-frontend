@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { financeAllThunk, financeCreateThunk, financeLastWeek } from './thunk'
-import { initialState } from './initialState'
+import { initialStateData } from '../../types/type'
+import { financeAllThunk, financeCreateThunk, financeLastWeek } from '../thunks/thunk'
+
+const initialState: initialStateData = {
+	finance: [],
+	error: null,
+	loading: false,
+}
 
 const financeSlice = createSlice({
 	name: 'finance',

@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { AppDispatch } from '@/app/store'
-import { financeData } from '@/entities/finance/initialState'
 import { categoryAll } from '@/features/category/api/thunks/thunk'
 import { balanceThunk } from '@/features/balance/api/thunks/thunk'
-import { financeAllThunk, financeCreateThunk } from '@/entities/finance/thunk'
+import { financeData } from '@/entities/finance/types/type'
+import { financeAllThunk, financeCreateThunk } from '@/entities/finance/api/thunks/thunk'
 
 const useFinance = () => {
 	const dispatch = useDispatch<AppDispatch>()

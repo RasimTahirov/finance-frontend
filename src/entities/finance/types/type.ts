@@ -10,14 +10,8 @@ export interface financeData {
 	createdAt: string
 }
 
-interface initialStateData {
+export interface initialStateData {
 	finance: financeData[]
 	error: null | string
 	loading: boolean
-}
-
-export const initialState: initialStateData = {
-	finance: [],
-	error: null,
-	loading: false,
 }

@@ -10,8 +10,8 @@ import {
 } from '@heroicons/react/16/solid'
 import { Switch } from 'antd'
 
-import useModal from '@/shared/hooks/useModal'
 import { pageConfig } from '@/shared/config/pageConfig'
+import useModal from '@/shared/hooks/useModal'
 import Popup from '@/shared/ui/Modal/Modal'
 import FinanceCreate from '@/widgets/financeCreate/FinanceCreate'
 
@@ -26,32 +26,29 @@ const AppSidebar = () => {
 					<h1 className="font-semibold text-menu">MyFinance</h1>
 				</div>
 			</div>
-
 			<ul className="grid gap-2 mb-5">
 				<li>
 					<NavLink to={pageConfig.home} className="menu">
 						<Squares2X2Icon className="w-5" />
-						Главная
+						<span>Главная</span>
 					</NavLink>
 				</li>
 				<li>
 					<NavLink to={pageConfig.history} className="menu">
 						<QueueListIcon className="w-5" />
-						История
+						<span>История</span>
 					</NavLink>
 				</li>
 				<li>
 					<NavLink to={pageConfig.profile} className="menu">
 						<UserIcon className="w-5" />
-						Профиль
+						<span>Профиль</span>
 					</NavLink>
 				</li>
 			</ul>
-
 			<div className="border opacity-50" />
-
 			<div className="grid px-1 gap-2.5 mt-5">
-				<button className="flex gap-1 items-center text-hover anim" onClick={showModal}>
+				<button className="flex gap-1 items-center anim hover:text-gray-400" onClick={showModal}>
 					<PlusIcon className="w-5" />
 					<span className="text-xl grid">Добавить платеж</span>
 				</button>

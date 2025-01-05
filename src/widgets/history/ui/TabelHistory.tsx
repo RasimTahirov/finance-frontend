@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { Button } from 'antd'
 
-import { financeAllThunk, financeDelete } from '@/entities/finance/thunk'
 import { AppDispatch, RootState } from '@/app/store'
 import { balanceThunk } from '@/features/balance/api/thunks/thunk'
 import { formatDate } from '@/utils/formattedDate'
 import PaginationHistory from './PaginationHistory'
 import Popup from '@/shared/ui/Modal/Modal'
+import { financeAllThunk, financeDelete } from '@/entities/finance/api/thunks/thunk'
 
 const TabelHistory = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -73,10 +73,16 @@ const TabelHistory = () => {
 										{isModalOpenId === fin.id && (
 											<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
 												<div className="grid w-80">
-													<span className="mb-2.5">Транзакция от {formatDate(fin.createdAt)}</span>
-													<div className="flex justify-between">
-														<span>{fin.category.title}</span>
-														<span>{fin.title}</span>
+													<span className="mb-5">Транзакция от {formatDate(fin.createdAt)}</span>
+													<div className="flex justify-between leading-5 mb-5">
+														<div className="grid">
+															<span className="font-semibold">Категория</span>
+															<span className="flex justify-start">{fin.category.title}</span>
+														</div>
+														<div className="grid">
+															<span className="font-semibold">Название</span>
+															<span className="flex justify-end">{fin.title}</span>
+														</div>
 													</div>
 													<span
 														className="flex justify-end font-semibold"
