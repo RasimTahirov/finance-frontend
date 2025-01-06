@@ -5,9 +5,14 @@ import { Button } from 'antd'
 import { AppDispatch, RootState } from '@/app/store'
 import { balanceThunk } from '@/features/balance/api/thunks/thunk'
 import { formatDate } from '@/utils/formattedDate'
+import {
+	financeAllThunk,
+	financeDelete,
+	findExpensesLastMonth,
+	findIncomeLastMonth,
+} from '@/entities/finance/api/thunks/thunk'
 import PaginationHistory from './PaginationHistory'
 import Popup from '@/shared/ui/Modal/Modal'
-import { financeAllThunk, financeDelete } from '@/entities/finance/api/thunks/thunk'
 
 const TabelHistory = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -31,7 +36,10 @@ const TabelHistory = () => {
 	const onDelete = () => {
 		if (isModalOpenId !== null) {
 			dispatch(financeDelete(isModalOpenId)).then(() =>
-				dispatch(financeAllThunk()).then(() => dispatch(balanceThunk())),
+				dispatch(financeAllThunk())
+					.then(() => dispatch(balanceThunk()))
+					.then(() => dispatch(findExpensesLastMonth()))
+					.then(() => dispatch(findIncomeLastMonth())),
 			)
 		}
 		setIsModalOpen(false)

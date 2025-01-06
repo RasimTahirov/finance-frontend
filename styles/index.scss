@@ -31,7 +31,7 @@ body {
 
 @layer components {
 	.container {
-		@apply w-3/4 mx-auto;
+		@apply w-4/5 mx-auto;
 	}
 
 	.card {
@@ -94,5 +94,9 @@ body {
 		}
 
 		@apply bg-black opacity-80;
+	}
+
+	.ant-result-subtitle {
+		@apply text-white;
 	}
 }

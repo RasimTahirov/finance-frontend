@@ -15,3 +15,14 @@ export interface initialStateData {
 	error: null | string
 	loading: boolean
 }
+
+interface lastMouthData {
+	value: number
+}
+
+export interface initialStateDataMouth {
+	income: lastMouthData
+	expenses: lastMouthData
+	error: null | string
+	loading: boolean
+}

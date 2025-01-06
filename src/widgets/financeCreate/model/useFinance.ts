@@ -5,7 +5,12 @@ import { AppDispatch } from '@/app/store'
 import { categoryAll } from '@/features/category/api/thunks/thunk'
 import { balanceThunk } from '@/features/balance/api/thunks/thunk'
 import { financeData } from '@/entities/finance/types/type'
-import { financeAllThunk, financeCreateThunk } from '@/entities/finance/api/thunks/thunk'
+import {
+	financeAllThunk,
+	financeCreateThunk,
+	findExpensesLastMonth,
+	findIncomeLastMonth,
+} from '@/entities/finance/api/thunks/thunk'
 
 const useFinance = () => {
 	const dispatch = useDispatch<AppDispatch>()
@@ -24,6 +29,8 @@ const useFinance = () => {
 		dispatch(financeCreateThunk(data))
 			.then(() => dispatch(financeAllThunk()))
 			.then(() => dispatch(balanceThunk()))
+			.then(() => dispatch(findIncomeLastMonth()))
+			.then(() => dispatch(findExpensesLastMonth()))
 	}
 
 	return { onSubmit }
