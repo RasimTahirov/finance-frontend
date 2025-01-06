@@ -33,7 +33,7 @@ export const financeAllThunk = createAsyncThunk('financeAllThunk', async () => {
 		})
 		return res.data
 	} catch (error) {
-		console.log('Ошибка 123', error)
+		console.log('Ошибка в получении транзакции', error)
 	}
 })
 
@@ -46,7 +46,7 @@ export const financeDelete = createAsyncThunk('financeDelete', async (id: number
 		})
 		return res.data
 	} catch (error) {
-		console.log('Ошибка удаления', error)
+		console.log('Ошибка в удалении транзакции', error)
 	}
 })
 
@@ -64,4 +64,30 @@ export const financeLastWeek = createAsyncThunk('financeLastWeek', async () => {
 	}
 })
 
-// Исправить все console.log
+export const findIncomeLastMonth = createAsyncThunk('findIncomeLastMonth', async () => {
+	try {
+		const res = await axios.get('http://localhost:3000/finance/income-month', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+
+		return res.data
+	} catch (error) {
+		console.log('Ошибка получение общей суммы', error)
+	}
+})
+
+export const findExpensesLastMonth = createAsyncThunk('findExpensesLastMonth', async () => {
+	try {
+		const res = await axios.get('http://localhost:3000/finance/expenses-month', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+
+		return res.data
+	} catch (error) {
+		console.log('Ошибка получение общей суммы', error)
+	}
+})

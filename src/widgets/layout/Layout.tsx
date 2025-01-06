@@ -12,7 +12,7 @@ const Layout = () => {
 	}
 
 	return (
-		<div className="container justify-between py-5 grid grid-cols-[18%_60%_20%] min-h-screen">
+		<div className="container justify-between py-5 grid grid-cols-[16%_56%_26%] min-h-screen">
 			<AppSidebar />
 			<Main />
 			<AppPanel />

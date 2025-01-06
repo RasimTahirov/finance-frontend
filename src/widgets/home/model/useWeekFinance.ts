@@ -9,11 +9,13 @@ const useWeekFinance = () => {
 	const dispatch = useDispatch<AppDispatch>()
 	const { finance, loading, error } = useSelector((state: RootState) => state.finance)
 
+	console.log(finance)
+
 	useEffect(() => {
 		dispatch(financeLastWeek())
 	}, [dispatch])
 
-	const financeDate: Record<string, FinanceType> = finance.reduce(
+	const financeDate: Record<string, FinanceType> = Object.values(finance).reduce(
 		(acc, fin) => {
 			const day = String(new Date(fin.createdAt).getDate()).padStart(2, '0')
 			const month = String(new Date(fin.createdAt).getMonth() + 1).padStart(2, '0')
