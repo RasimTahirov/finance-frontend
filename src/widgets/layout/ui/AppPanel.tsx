@@ -9,11 +9,7 @@ const AppPanel = () => {
 	const { data, color } = useIncomeExpenses()
 
 	if (error) {
-		return (
-			<div className="card">
-				<span>{error}</span>
-			</div>
-		)
+		return <div className="card">{error}</div>
 	}
 
 	return (
@@ -39,12 +35,14 @@ const AppPanel = () => {
 				)}
 			</div>
 
-			<div className="card pointer-events-none">
-				{loading ? (
-					<Skeleton active />
-				) : (
-					<>
-						<h4 className="flex justify-center">Статистика за 30 дней</h4>
+			{loading ? (
+				<Skeleton active />
+			) : data.every((value) => value.value === 0) ? (
+				<div></div>
+			) : (
+				<>
+					<div className="card pointer-events-none">
+						<h4 className="flex justify-center">Динамика за 30 дней</h4>
 						<PieChart width={380} height={170}>
 							<Pie
 								data={data}
@@ -64,9 +62,9 @@ const AppPanel = () => {
 								))}
 							</Pie>
 						</PieChart>
-					</>
-				)}
-			</div>
+					</div>
+				</>
+			)}
 		</div>
 	)
 }
