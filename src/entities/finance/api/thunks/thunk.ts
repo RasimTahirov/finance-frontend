@@ -24,18 +24,25 @@ export const financeCreateThunk = createAsyncThunk(
 	},
 )
 
-export const financeAllThunk = createAsyncThunk('financeAllThunk', async () => {
-	try {
-		const res = await axios.get('http://localhost:3000/finance', {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-		return res.data
-	} catch (error) {
-		console.log('Ошибка в получении транзакции', error)
-	}
-})
+export const financeAllThunk = createAsyncThunk(
+	'financeAllThunk',
+	async ({ page = 1, limit = 10 }: { page: number; limit: number }) => {
+		try {
+			const res = await axios.get('http://localhost:3000/finance', {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				params: {
+					page,
+					limit,
+				},
+			})
+			return res.data
+		} catch (error) {
+			console.log('Ошибка в получении транзакции', error)
+		}
+	},
+)
 
 export const financeDelete = createAsyncThunk('financeDelete', async (id: number) => {
 	try {

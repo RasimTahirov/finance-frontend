@@ -45,6 +45,10 @@ body {
 	.menu:hover {
 		@apply bg-menu;
 	}
+
+	.pagination {
+		@apply hover:opacity-50 hover:disabled:opacity-100 transition-opacity duration-200 ease-out;
+	}
 }
 
 @layer utilities {
