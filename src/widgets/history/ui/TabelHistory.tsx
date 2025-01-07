@@ -17,12 +17,18 @@ import Popup from '@/shared/ui/Modal/Modal'
 const TabelHistory = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isModalOpenId, setIsModalOpenId] = useState<number | null>(null)
-	const { finance } = useSelector((state: RootState) => state.finance)
+	const { finance, currentPage, total, totalPage } = useSelector(
+		(state: RootState) => state.history,
+	)
 	const dispatch = useDispatch<AppDispatch>()
 
+	const handlePage = (page: number) => {
+		dispatch(financeAllThunk({ page, limit: 10 }))
+	}
+
 	useEffect(() => {
-		dispatch(financeAllThunk())
-	}, [dispatch])
+		dispatch(financeAllThunk({ page: currentPage, limit: 10 }))
+	}, [dispatch, currentPage])
 
 	const showModal = (id: number) => {
 		setIsModalOpen(true)
@@ -36,7 +42,7 @@ const TabelHistory = () => {
 	const onDelete = () => {
 		if (isModalOpenId !== null) {
 			dispatch(financeDelete(isModalOpenId)).then(() =>
-				dispatch(financeAllThunk())
+				dispatch(financeAllThunk({ page: currentPage, limit: 10 }))
 					.then(() => dispatch(balanceThunk()))
 					.then(() => dispatch(findExpensesLastMonth()))
 					.then(() => dispatch(findIncomeLastMonth())),
@@ -106,7 +112,11 @@ const TabelHistory = () => {
 								))}
 					</tbody>
 				</table>
-				<PaginationHistory />
+				<PaginationHistory
+					onChangePage={handlePage}
+					currentPage={currentPage}
+					totalPage={totalPage}
+				/>
 			</div>
 		</>
 	)
