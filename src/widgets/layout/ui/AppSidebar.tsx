@@ -1,4 +1,5 @@
-import logo from '../../../../public/assets/logo/logo.svg'
+import darkLogo from '../../../../public/assets/logo/dark-logo.svg'
+import lightLogo from '../../../../public/assets/logo/light-logo.svg'
 import { NavLink } from 'react-router-dom'
 import {
 	MoonIcon,
@@ -14,16 +15,23 @@ import { pageConfig } from '@/shared/config/pageConfig'
 import useModal from '@/shared/hooks/useModal'
 import Popup from '@/shared/ui/Modal/Modal'
 import FinanceCreate from '@/widgets/financeCreate/FinanceCreate'
+import { useTheme } from '@/shared/config/ThemeContext'
+import { useEffect } from 'react'
 
 const AppSidebar = () => {
 	const { isModalOpen, closeModal, showModal } = useModal()
+	const { theme, toggleTheme } = useTheme()
+
+	useEffect(() => {
+		document.body.className = theme
+	}, [theme])
 
 	return (
 		<div className="card">
 			<div className="flex justify-between items-center mb-10">
 				<div className="flex items-center gap-2.5">
-					<img src={logo} alt="myFinance" className="w-10" />
-					<h1 className="font-semibold text-menu">MyFinance</h1>
+					<img src={theme === 'dark' ? darkLogo : lightLogo} alt="myFinance" className="w-10" />
+					<h1 className="logo font-semibold">MyFinance</h1>
 				</div>
 			</div>
 			<ul className="grid gap-2 mb-5">
@@ -55,7 +63,7 @@ const AppSidebar = () => {
 				<div className="flex gap-2">
 					<MoonIcon className="w-5" />
 					{/* <SunIcon className="w-5" /> */}
-					<Switch className="switch" />
+					<Switch className="switch" onClick={() => toggleTheme()} />
 				</div>
 			</div>
 
