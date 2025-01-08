@@ -16,7 +16,15 @@ body {
 
 @layer base {
 	body {
-		@apply text-xl font-exo2 font-normal bg-body  text-white m-0 min-h-screen !important;
+		@apply text-xl font-exo2 font-normal  m-0 min-h-screen !important;
+	}
+
+	.light {
+		@apply bg-lightBody text-light !important;
+	}
+
+	.dark {
+		@apply bg-darkBody text-dark !important;
 	}
 
 	input,
@@ -35,7 +43,15 @@ body {
 	}
 
 	.card {
-		@apply bg-card p-5 rounded-md;
+		@apply shadow-card p-5 rounded-md;
+	}
+
+	.dark .card {
+		@apply bg-darkCard;
+	}
+
+	.light .card {
+		@apply bg-lightCard;
 	}
 
 	.menu {
@@ -46,14 +62,12 @@ body {
 		@apply bg-menu;
 	}
 
+	.light .menu:hover {
+		@apply text-dark bg-menu;
+	}
+
 	.pagination {
 		@apply hover:opacity-50 hover:disabled:opacity-100 transition-opacity duration-200 ease-out;
-	}
-}
-
-@layer utilities {
-	.error {
-		@apply text-error;
 	}
 
 	.switch {
@@ -62,6 +76,12 @@ body {
 
 	.switch:hover {
 		@apply bg-opacity-30 !important;
+	}
+}
+
+@layer utilities {
+	.error {
+		@apply text-error;
 	}
 
 	.input-number .ant-input-number-handler-wrap {
@@ -85,7 +105,7 @@ body {
 	}
 
 	.delete-text {
-		@apply absolute opacity-0 left-[50%] translate-x-[-50%] transition-all duration-200 ease-out;
+		@apply absolute opacity-0 left-[50%] translate-x-[-50%] transition-all duration-200 ease-out text-dark;
 	}
 
 	.category:hover {
@@ -96,11 +116,25 @@ body {
 		.delete-text {
 			@apply opacity-100;
 		}
-
-		@apply bg-black opacity-80;
 	}
 
 	.ant-result-subtitle {
 		@apply text-white;
+	}
+
+	.light .category-text {
+		@apply text-dark;
+	}
+
+	.light .logo {
+		@apply text-light;
+	}
+
+	.dark .logo {
+		@apply text-dark;
+	}
+
+	.custom-button {
+		@apply bg-menu !important;
 	}
 }

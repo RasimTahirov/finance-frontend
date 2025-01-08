@@ -2,9 +2,11 @@ import { Result, Skeleton } from 'antd'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 import useWeekFinance from '../model/useWeekFinance'
+import { useTheme } from '@/shared/config/ThemeContext'
 
 const LastWeekFinance = () => {
 	const { loading, data, error } = useWeekFinance()
+	const { theme } = useTheme()
 
 	if (error) {
 		return <div className="card">{error}</div>
@@ -28,8 +30,8 @@ const LastWeekFinance = () => {
 					<div className="py-10">
 						<ResponsiveContainer width="100%" height={500}>
 							<BarChart data={data}>
-								<XAxis dataKey="name" stroke="#fff" />
-								<YAxis stroke="#fff" />
+								<XAxis dataKey="name" stroke={theme === 'dark' ? '#f7f5f5' : '#141212'} />
+								<YAxis stroke={theme === 'dark' ? '#f7f5f5' : '#141212'} />
 								<Tooltip cursor={{ fill: 'transparent' }} />
 								<Bar dataKey="Поступление" fill="#6359e9" barSize={20} minPointSize={5} />
 								<Bar dataKey="Расход" fill="#64cff6" barSize={20} minPointSize={5} />

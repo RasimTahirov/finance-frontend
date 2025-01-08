@@ -28,8 +28,12 @@ const CategoryActions = () => {
 
 	return (
 		<div className="grid items-center">
-			<Button onClick={handleLogout}>Выйти</Button>
-			<Button onClick={showModal}>Добавить категорию</Button>
+			<Button className="custom-button" type="primary" onClick={handleLogout}>
+				Выйти
+			</Button>
+			<Button className="custom-button" type="primary" onClick={showModal}>
+				Добавить категорию
+			</Button>
 			<Popup isModalOpen={isModalOpen} closeModal={closeModal}>
 				<Form form={form} onFinish={onSubmit}>
 					<label className="text-lg">Введите название категории</label>
