@@ -1,28 +1,37 @@
-export interface financeData {
-	id: number
-	title: string
-	amount: number
-	type: string
-	category: {
-		id: number
-		title: string
-	}
-	createdAt: string
+export interface IFinance {
+  id: number
+  title: string
+  amount: number
+  type: string
+  createdAt: string
+  category: {
+    id: number
+    title: string
+  }
 }
 
-export interface initialStateData {
-	finance: financeData[]
-	error: null | string
-	loading: boolean
+export interface IInitialStateFinance {
+  finance: IFinance[]
+  error: null | string
+  loading: boolean
 }
 
-interface lastMouthData {
-	value: number
+export interface IInitialStateHistory {
+  finance: IFinance[]
+  totalPage: number
+  total: number
+  currentPage: number
+  error: null | string
+  loading: boolean
 }
 
-export interface initialStateDataMouth {
-	income: lastMouthData
-	expenses: lastMouthData
-	error: null | string
-	loading: boolean
+export interface IIitialStateLastMouth {
+  income: IIncomeAndExpenses
+  expenses: IIncomeAndExpenses
+  error: null | string
+  loading: boolean
+}
+
+interface IIncomeAndExpenses {
+  value: number
 }

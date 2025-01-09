@@ -1,4 +1,4 @@
 export interface FinanceType {
-	Поступление: number
-	Расход: number
+  Поступление: number
+  Расход: number
 }

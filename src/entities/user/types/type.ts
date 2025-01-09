@@ -1,18 +1,18 @@
-export interface UserState {
-	user: UserData | null
-	error: null | undefined | string
-	loading: boolean
-	token: string | null
+export interface IInitialStateUser {
+  user: IUser | null
+  error: null | undefined | string
+  loading: boolean
+  token: string | null
 }
 
-export interface UserData {
-	name: string
-	email: string
-	password: string
+export interface IUser {
+  name: string
+  email: string
+  password: string
 }
 
-export interface RegisterData {
-	name: string
-	email: string
-	password: string
+export interface IRegisterData {
+  name: string
+  email: string
+  password: string
 }

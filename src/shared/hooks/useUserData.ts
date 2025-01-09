@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react'
 
 const useUserData = () => {
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
-	const user = () => {
-		const nameLocalStorage = localStorage.getItem('name')
-		const emailLocalStorage = localStorage.getItem('email')
+  const user = () => {
+    const nameLocalStorage = localStorage.getItem('name')
+    const emailLocalStorage = localStorage.getItem('email')
 
-		setName(nameLocalStorage ? JSON.parse(nameLocalStorage) : null)
-		setEmail(emailLocalStorage ? JSON.parse(emailLocalStorage) : null)
-	}
+    setName(nameLocalStorage ? JSON.parse(nameLocalStorage) : null)
+    setEmail(emailLocalStorage ? JSON.parse(emailLocalStorage) : null)
+  }
 
-	useEffect(() => {
-		user()
-	}, [])
+  useEffect(() => {
+    user()
+  }, [])
 
-	return { name, email }
+  return { name, email }
 }
 
 export default useUserData

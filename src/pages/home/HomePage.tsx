@@ -1,7 +1,7 @@
 import Home from '@/widgets/home/Home'
 
 const HomePage = () => {
-	return <Home />
+  return <Home />
 }
 
 export default HomePage

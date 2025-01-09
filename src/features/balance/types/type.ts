@@ -1,5 +1,5 @@
-export interface initialState {
-	balance: number
-	error: null | string
-	loading: boolean
+export interface IInitialStateBalance {
+  balance: number
+  error: null | string
+  loading: boolean
 }

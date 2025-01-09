@@ -1,10 +1,10 @@
-export interface categoryData {
-	title: string
-	id: number
+export interface ICategory {
+  title: string
+  id: number
 }
 
-export interface initialStateData {
-	category: categoryData[] | null
-	error: null | string
-	loading: boolean
+export interface IInitialStateCategory {
+  category: ICategory[] | null
+  error: null | string
+  loading: boolean
 }
