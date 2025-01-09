@@ -5,14 +5,14 @@ import { balanceThunk } from '../api/thunks/thunk'
 import { AppDispatch, RootState } from '@/app/store'
 
 const useBalance = () => {
-	const dispatch = useDispatch<AppDispatch>()
-	const { balance, loading, error } = useSelector((state: RootState) => state.balance)
+  const dispatch = useDispatch<AppDispatch>()
+  const { balance, loading, error } = useSelector((state: RootState) => state.balance)
 
-	useEffect(() => {
-		dispatch(balanceThunk())
-	}, [dispatch])
+  useEffect(() => {
+    dispatch(balanceThunk())
+  }, [dispatch])
 
-	return { balance, loading, error }
+  return { balance, loading, error }
 }
 
 export default useBalance

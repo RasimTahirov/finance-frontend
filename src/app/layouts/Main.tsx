@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom'
 
 const Main = () => {
-	return (
-		<div>
-			<Outlet />
-		</div>
-	)
+  return (
+    <section>
+      <Outlet />
+    </section>
+  )
 }
 
 export default Main

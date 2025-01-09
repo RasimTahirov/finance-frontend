@@ -1,7 +1,7 @@
 import History from '@/widgets/history/History'
 
 const HistoryPage = () => {
-	return <History />
+  return <History />
 }
 
 export default HistoryPage

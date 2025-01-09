@@ -1,39 +1,42 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { AppDispatch } from '@/app/store'
+import { AppDispatch, RootState } from '@/app/store'
 import { categoryAll } from '@/features/category/api/thunks/thunk'
 import { balanceThunk } from '@/features/balance/api/thunks/thunk'
-import { financeData } from '@/entities/finance/types/type'
+import { IFinance } from '@/entities/finance/types/type'
 import {
-	financeAllThunk,
-	financeCreateThunk,
-	findExpensesLastMonth,
-	findIncomeLastMonth,
+  financeAllThunk,
+  financeCreateThunk,
+  findExpensesLastMonth,
+  findIncomeLastMonth,
 } from '@/entities/finance/api/thunks/thunk'
 
 const useFinance = () => {
-	const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>()
+  const { currentPage } = useSelector((state: RootState) => state.history)
 
-	useEffect(() => {
-		dispatch(categoryAll())
-	}, [dispatch])
+  useEffect(() => {
+    dispatch(categoryAll())
+  }, [dispatch])
 
-	const onSubmit = (data: financeData) => {
-		if (data.type === 'Расход') {
-			data.amount = -Math.abs(data.amount)
-		} else {
-			data.amount = Math.abs(data.amount)
-		}
+  const onSubmit = async (data: IFinance) => {
+    if (data.type === 'Расход') {
+      data.amount = -Math.abs(data.amount)
+    } else {
+      data.amount = Math.abs(data.amount)
+    }
 
-		dispatch(financeCreateThunk(data))
-			.then(() => dispatch(financeAllThunk()))
-			.then(() => dispatch(balanceThunk()))
-			.then(() => dispatch(findIncomeLastMonth()))
-			.then(() => dispatch(findExpensesLastMonth()))
-	}
+    await dispatch(financeCreateThunk(data))
+    await dispatch(financeAllThunk({ page: currentPage, limit: 10 }))
+    await dispatch(balanceThunk())
+    await dispatch(findIncomeLastMonth())
+    await dispatch(findExpensesLastMonth())
 
-	return { onSubmit }
+    location.reload()
+  }
+
+  return { onSubmit }
 }
 
 export default useFinance
