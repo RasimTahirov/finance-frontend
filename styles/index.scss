@@ -16,7 +16,7 @@ body {
 
 @layer base {
   body {
-    @apply text-xl font-exo2 font-normal  m-0 min-h-screen !important;
+    @apply text-xl font-exo2 font-normal  m-0 min-h-screen transition-colors duration-300 ease-out !important;
   }
 
   .light {
